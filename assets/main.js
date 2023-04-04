@@ -30,11 +30,21 @@ function numberCreated(){
 
         let lista = document.createElement("li")
         lista.innerHTML = `${numeroRandom()}`
-        // array.push("lista")
         containerlista.append(lista)
         i++
     }
     return lista
 }
 console.log(numberCreated())
+
+//targettizzo il bottone
+let button = document.querySelector(".button")
+
+button.addEventListener(`click`, function(){
+    setTimeout(function(){
+        containerlista.classList.add("none")
+        console.log("ciao")
+        prompt("che numeri hai visto ?")
+    }, 2000)
+})
 
