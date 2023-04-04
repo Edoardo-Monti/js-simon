@@ -8,10 +8,13 @@
     display: none;
 }
 
+.opacity{
+    opacity: 0;
+}
+
 .flex1{
     display: flex;
-    justify-content: center;
-    align-items: center;
+    
 }
 
 .flex2{

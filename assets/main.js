@@ -15,6 +15,7 @@ Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei num
 */
 
 let containerlista = document.querySelector("#lista")
+let arrayRandom = []
 
 //genero il numero random
 function numeroRandom(){
@@ -23,28 +24,49 @@ function numeroRandom(){
 }
 console.log(numeroRandom())
 
-//faccio una funzione che mi crea 5 elementi
+//faccio una funzione che mi crea 5 elementi nell'array
 function numberCreated(){
     i = 0
-    while( i < 5){
-
-        let lista = document.createElement("li")
-        lista.innerHTML = `${numeroRandom()}`
-        containerlista.append(lista)
+    while( arrayRandom.length < 5){
+        arrayRandom.push(numeroRandom())
+        containerlista.innerHTML += `<li>${arrayRandom[i]}</li>`
         i++
     }
-    return lista
+    
+    return containerlista
 }
 console.log(numberCreated())
+console.log(arrayRandom)
 
 //targettizzo il bottone
 let button = document.querySelector(".button")
 
 button.addEventListener(`click`, function(){
+    //aggiungi la classe all'elemento
+    containerlista.classList.add("opacity")
+    //attivo una funzione che dice dopo 2 secondi fai questo..
     setTimeout(function(){
-        containerlista.classList.add("none")
+        
+        
         console.log("ciao")
-        prompt("che numeri hai visto ?")
+
+        let s = prompt("scrivi i numeri che hai visto divisi da uno spazio...")
+        //crea un array di quello che scrivo nel prompt, diviso da uno spazio
+        let array = s.split(" ")
+        console.log(array)
+        //condizione per paragonare gli elementi dei due array2r
+        if(array.toString() === arrayRandom.toString()){
+            containerlista.classList.remove("opacity")
+            containerlista.innerHTML = "HAI VINTO"
+            console.log("you win")
+
+        }else{
+            console.log("you lose")
+            containerlista.classList.remove("opacity")
+            containerlista.innerHTML = "HAI PERSO"
+        }
     }, 2000)
+
+    
 })
 
