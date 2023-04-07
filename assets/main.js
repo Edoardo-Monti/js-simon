@@ -1,7 +1,6 @@
 /*
 Descrizione:
 Visualizzare in pagina 5 numeri casuali. 
-- al click di un botton appaiono i numeri
 - i numeri random li creo con una funzione e li richiamo all'interno del click
 
 Da lì parte un timer di 5 secondi.
@@ -16,13 +15,14 @@ Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei num
 
 let containerlista = document.querySelector("#lista")
 let arrayRandom = []
+let arrayControllo = []
 
 //genero il numero random
 function numeroRandom(){
     let numero = Math.floor(Math.random() * 100) + 1
     return numero
 }
-console.log(numeroRandom())
+numeroRandom()
 
 //faccio una funzione che mi crea 5 elementi nell'array
 function numberCreated(){
@@ -32,10 +32,9 @@ function numberCreated(){
         containerlista.innerHTML += `<li>${arrayRandom[i]}</li>`
         i++
     }
-    
-    return containerlista
 }
-console.log(numberCreated())
+
+numberCreated()
 console.log(arrayRandom)
 
 //targettizzo il bottone
@@ -44,18 +43,22 @@ let button = document.querySelector(".button")
 button.addEventListener(`click`, function(){
     //aggiungi la classe all'elemento
     containerlista.classList.add("opacity")
-    //attivo una funzione che dice dopo 2 secondi fai questo..
+    //attivo una funzione che dice dopo 1 secondo fai questo..
     setTimeout(function(){
         
         
         console.log("ciao")
 
-        let s = prompt("scrivi i numeri che hai visto divisi da uno spazio...")
-        //crea un array di quello che scrivo nel prompt, diviso da uno spazio
-        let array = s.split(" ")
-        console.log(array)
-        //condizione per paragonare gli elementi dei due array2r
-        if(array.toString() === arrayRandom.toString()){
+        
+        //crea un array di quello che scrivo nel prompt
+        for(s = 0; arrayControllo.length < 5; s++ ){
+            let s = parseInt(prompt("scrivi singolarmente i numeri che hai visto"))
+            arrayControllo.push(s)
+            
+        }
+        console.log(arrayControllo)
+        //condizione per paragonare gli elementi dei due array
+        if(arrayControllo.toString() === arrayRandom.toString()){
             containerlista.classList.remove("opacity")
             containerlista.innerHTML = "HAI VINTO"
             console.log("you win")
@@ -64,8 +67,9 @@ button.addEventListener(`click`, function(){
             console.log("you lose")
             containerlista.classList.remove("opacity")
             containerlista.innerHTML = "HAI PERSO"
+            
         }
-    }, 2000)
+    }, 1000)
 
     
 })
