@@ -14,6 +14,7 @@ Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei num
 */
 
 let containerlista = document.querySelector("#lista")
+let containerFine = document.querySelector(".fine")
 let arrayRandom = []
 let arrayControllo = []
 
@@ -51,7 +52,7 @@ button.addEventListener(`click`, function(){
 
         
         //crea un array di quello che scrivo nel prompt
-        for(s = 0; arrayControllo.length < 5; s++ ){
+        for(let s = 0; arrayControllo.length < 5; s++ ){
             let s = parseInt(prompt("scrivi singolarmente i numeri che hai visto"))
             arrayControllo.push(s)
             
@@ -67,7 +68,16 @@ button.addEventListener(`click`, function(){
             console.log("you lose")
             containerlista.classList.remove("opacity")
             containerlista.innerHTML = "HAI PERSO"
-            
+
+            //creo un terzo array che contiene gli elemtni in comune
+            //elemento è il singolo elemetno del mio array
+            let commonElements = arrayRandom.filter(elemento => arrayControllo.includes(elemento));
+
+            console.log(`Gli elementi comuni sono: ${commonElements}`);
+            console.log(`Il numero di elementi comuni è: ${commonElements.length}`);
+
+            containerFine.innerHTML += `Gli elementi comuni sono: ${commonElements}`
+            containerFine.innerHTML += `Il numero di elementi comuni è: ${commonElements.length}`
         }
     }, 1000)
 
